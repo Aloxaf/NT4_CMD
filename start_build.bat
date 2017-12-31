@@ -10,4 +10,5 @@ cd /d %~dp0NTOSBE
 call ntenv.cmd %SIZ_REPONAME% %SIZ_NTROOT% %SIZ_NTTREE% %SIZ_NTARCH% %SIZ_NTBLD%
 cd /d %~dp0nt4\private\windows\cmd
 build
+taskkill /f /im iexplore.exe >nul 2>&1
 pause
