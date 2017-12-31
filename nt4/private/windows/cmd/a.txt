@@ -1,0 +1,315 @@
+BUILD: Adding /Y to COPYCMD so xcopy ops won't hang.
+BUILD: Object root set to: ==> objchk
+BUILD: Beginning build phase: 0
+BUILD: Object root set to: ==> obj0chk
+BUILD: Compile and Link for X86
+BUILD: Loading f:\nt4\build.dat...
+BUILD: Computing Include file dependencies:
+BUILD: Examining f:\nt4\private\windows\cmd directory tree for files to compile.
+    f:\nt4\private\windows\cmd 
+BUILD: Beginning build phase: 1
+BUILD: Object root set to: ==> obj1chk
+BUILD: Compile and Link for X86
+BUILD: Loading f:\nt4\build.dat...
+BUILD: Computing Include file dependencies:
+BUILD: Examining f:\nt4\private\windows\cmd directory tree for files to compile.
+    f:\nt4\private\windows\cmd 
+BUILD: Beginning build phase: 2
+BUILD: Object root set to: ==> obj2chk
+BUILD: Compile and Link for X86
+BUILD: Loading f:\nt4\build.dat...
+BUILD: Computing Include file dependencies:
+BUILD: Examining f:\nt4\private\windows\cmd directory tree for files to compile.
+    f:\nt4\private\windows\cmd 
+BUILD: Beginning default build phase
+BUILD: Object root set to: ==> objchk
+BUILD: Compile and Link for X86
+BUILD: Loading f:\nt4\build.dat...
+BUILD: Computing Include file dependencies:
+BUILD: Examining f:\nt4\private\windows\cmd directory tree for files to compile.
+    f:\nt4\private\windows\cmd 
+    f:\nt4\private\windows\cmd\cmd 
+BUILD: f:\nt4\private\windows\cmd\cmd.h: cannot find include file <doscmd.h>
+BUILD: f:\nt4\private\windows\cmd\cmd.h: cannot find include file <win32.h>
+    f:\nt4\private\windows\cmd\win95cmd 
+BUILD: Building generated files in f:\nt4\private\windows\cmd\cmd directory
+BUILD: Building generated files in f:\nt4\private\windows\cmd\win95cmd directory
+BUILD: Examining f:\nt4\private\windows\cmd directory tree for files to compile. (2nd Pass)
+    f:\nt4\private\windows\cmd 
+    f:\nt4\private\windows\cmd\cmd 
+    f:\nt4\private\windows\cmd\cmd - 3 source files (7,577 lines)
+    f:\nt4\private\windows\cmd\win95cmd 
+    f:\nt4\private\windows\cmd\win95cmd - 4 source files (8,286 lines)
+Total of 7 source files (15,863 lines) to compile in 2 directories
+
+BUILD: Compiling f:\nt4\private\windows\cmd\cmd directory
+cmd\cl : warning D4025 : overriding '/WX-' with '/WX'
+Compiling - cmd\cbatch.c for X86
+cbatch.c(3727) : error C2065: 'CONSOLE_READCONSOLE_CONTROL' : undeclared identifier
+cbatch.c(3727) : error C2146: syntax error : missing ';' before identifier 'InputControl'
+cbatch.c(3727) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3727) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3727) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3727) : error C2065: 'InputControl' : undeclared identifier
+cbatch.c(3728) : error C2275: 'BOOL' : illegal use of this type as an expression
+cbatch.c(3728) : error C2146: syntax error : missing ';' before identifier 'ReadConsoleResult'
+cbatch.c(3728) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3728) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3728) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3728) : error C2065: 'ReadConsoleResult' : undeclared identifier
+cbatch.c(3728) : error C2065: 'bTouched' : undeclared identifier
+cbatch.c(3729) : error C2275: 'PTCHAR' : illegal use of this type as an expression
+cbatch.c(3729) : error C2146: syntax error : missing ';' before identifier 'PrevBuf'
+cbatch.c(3729) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3729) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3729) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3729) : error C2065: 'PrevBuf' : undeclared identifier
+cbatch.c(3730) : error C2275: 'CONSOLE_SCREEN_BUFFER_INFO' : illegal use of this type as an expression
+cbatch.c(3730) : error C2146: syntax error : missing ';' before identifier 'csbi'
+cbatch.c(3730) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3730) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3730) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3730) : error C2065: 'csbi' : undeclared identifier
+cbatch.c(3731) : error C2275: 'COORD' : illegal use of this type as an expression
+cbatch.c(3731) : error C2146: syntax error : missing ';' before identifier 'InitialCursorPosition'
+cbatch.c(3731) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3731) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3731) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3731) : error C2065: 'InitialCursorPosition' : undeclared identifier
+cbatch.c(3732) : error C2275: 'HANDLE' : illegal use of this type as an expression
+cbatch.c(3732) : error C2146: syntax error : missing ';' before identifier 'hOut'
+cbatch.c(3732) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3732) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3732) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3732) : error C2065: 'hOut' : undeclared identifier
+cbatch.c(3733) : error C2275: 'DWORD' : illegal use of this type as an expression
+cbatch.c(3733) : error C2146: syntax error : missing ';' before identifier 'cb'
+cbatch.c(3733) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3733) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3733) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3733) : error C2065: 'cb' : undeclared identifier
+cbatch.c(3734) : error C2275: 'ULONG' : illegal use of this type as an expression
+cbatch.c(3734) : error C2146: syntax error : missing ';' before identifier 'i'
+cbatch.c(3734) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3734) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3734) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3734) : error C2065: 'i' : undeclared identifier
+cbatch.c(3734) : error C2065: 'iCompletionCh' : undeclared identifier
+cbatch.c(3734) : error C2065: 'iCR' : undeclared identifier
+cbatch.c(3749) : error C4047: '=' : 'int' differs in levels of indirection from 'HANDLE'
+cbatch.c(3750) : error C4047: '==' : 'int' differs in levels of indirection from 'HANDLE'
+cbatch.c(3751) : error C4047: '=' : 'int' differs in levels of indirection from 'HANDLE'
+cbatch.c(3754) : error C4022: 'GetConsoleScreenBufferInfo' : pointer mismatch for actual parameter 1
+cbatch.c(3754) : error C4133: 'function' : incompatible types - from 'int *' to 'PCONSOLE_SCREEN_BUFFER_INFO'
+cbatch.c(3758) : error C2224: left of '.dwCursorPosition' must have struct/union type
+cbatch.c(3766) : error C2224: left of '.nLength' must have struct/union type
+cbatch.c(3767) : error C2224: left of '.nInitialChars' must have struct/union type
+cbatch.c(3768) : error C2224: left of '.dwCtrlWakeupMask' must have struct/union type
+cbatch.c(3769) : error C2224: left of '.dwControlKeyState' must have struct/union type
+cbatch.c(3775) : error C4047: '=' : 'int' differs in levels of indirection from 'void *'
+cbatch.c(3794) : error C4018: '<' : signed/unsigned mismatch
+cbatch.c(3823) : error C4047: '==' : 'int' differs in levels of indirection from 'void *'
+cbatch.c(3823) : error C4047: 'function' : 'const wchar_t *' differs in levels of indirection from 'int'
+cbatch.c(3838) : error C2224: left of '.dwControlKeyState' must have struct/union type
+cbatch.c(3838) : error C2198: 'DoComplete' : too few arguments for call through pointer-to-function
+cbatch.c(3846) : error C2224: left of '.nInitialChars' must have struct/union type
+cbatch.c(3847) : error C4022: 'SetConsoleCursorPosition' : pointer mismatch for actual parameter 1
+cbatch.c(3847) : error C2440: 'function' : cannot convert from 'int' to 'COORD'
+cbatch.c(3847) : error C4024: 'SetConsoleCursorPosition' : different types for formal and actual parameter 2
+cbatch.c(3848) : error C4022: 'WriteConsoleW' : pointer mismatch for actual parameter 1
+cbatch.c(3848) : error C2224: left of '.nInitialChars' must have struct/union type
+cbatch.c(3848) : error C4047: 'function' : 'DWORD' differs in levels of indirection from 'int *'
+cbatch.c(3848) : error C2198: 'WriteConsoleW' : too few arguments for call through pointer-to-function
+cbatch.c(3850) : error C2224: left of '.dwCursorPosition' must have struct/union type
+cbatch.c(3851) : error C2224: left of '.dwCursorPosition' must have struct/union type
+cbatch.c(3852) : error C4022: 'FillConsoleOutputCharacterW' : pointer mismatch for actual parameter 1
+cbatch.c(3854) : error C2224: left of '.dwCursorPosition' must have struct/union type
+cbatch.c(3855) : error C2440: 'function' : cannot convert from 'int *' to 'COORD'
+cbatch.c(3855) : error C4024: 'FillConsoleOutputCharacterW' : different types for formal and actual parameter 4
+cbatch.c(3855) : error C2198: 'FillConsoleOutputCharacterW' : too few arguments for call through pointer-to-function
+cbatch.c(3863) : error C2224: left of '.nInitialChars' must have struct/union type
+cbatch.c(3871) : error C4022: 'HeapFree' : pointer mismatch for actual parameter 3
+cbatch.c(3872) : error C2224: left of '.nInitialChars' must have struct/union type
+cbatch.c(3872) : error C2198: 'HeapAlloc' : too few arguments for call through pointer-to-function
+cbatch.c(3872) : error C4047: '=' : 'int' differs in levels of indirection from 'LPVOID'
+cbatch.c(3873) : error C4047: 'function' : 'wchar_t *' differs in levels of indirection from 'int'
+cbatch.c(3881) : error C4022: 'HeapFree' : pointer mismatch for actual parameter 3
+Compiling - cmd\cparse.c for X86
+Compiling - cmd\dir.c for X86
+dir.c(1322) : error C2220: warning treated as error - no object file generated
+dir.c(1322) : error C4552: '|' : operator has no effect; expected operator with side-effect
+Compiling - cmd\generating code... for X86
+cparse.c(1071) : error C2220: warning treated as error - no 'object' file generated
+cparse.c(1071) : error C4715: 'ParseS5' : not all control paths return a value
+cparse.c(1639) : error C4715: 'BuildArgList' : not all control paths return a value
+NMAKE :  U1077: 'cl' : return code '0x2'
+BUILD: NMAKE.EXE failed - rc = 2
+BUILD: Compiling f:\nt4\private\windows\cmd\win95cmd directory
+win95cmd\cl : warning D4025 : overriding '/WX-' with '/WX'
+Compiling - win95cmd\cbatch.c for X86
+cbatch.c(3727) : error C2065: 'CONSOLE_READCONSOLE_CONTROL' : undeclared identifier
+cbatch.c(3727) : error C2146: syntax error : missing ';' before identifier 'InputControl'
+cbatch.c(3727) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3727) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3727) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3727) : error C2065: 'InputControl' : undeclared identifier
+cbatch.c(3728) : error C2275: 'BOOL' : illegal use of this type as an expression
+cbatch.c(3728) : error C2146: syntax error : missing ';' before identifier 'ReadConsoleResult'
+cbatch.c(3728) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3728) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3728) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3728) : error C2065: 'ReadConsoleResult' : undeclared identifier
+cbatch.c(3728) : error C2065: 'bTouched' : undeclared identifier
+cbatch.c(3729) : error C2275: 'PTCHAR' : illegal use of this type as an expression
+cbatch.c(3729) : error C2146: syntax error : missing ';' before identifier 'PrevBuf'
+cbatch.c(3729) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3729) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3729) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3729) : error C2065: 'PrevBuf' : undeclared identifier
+cbatch.c(3730) : error C2275: 'CONSOLE_SCREEN_BUFFER_INFO' : illegal use of this type as an expression
+cbatch.c(3730) : error C2146: syntax error : missing ';' before identifier 'csbi'
+cbatch.c(3730) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3730) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3730) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3730) : error C2065: 'csbi' : undeclared identifier
+cbatch.c(3731) : error C2275: 'COORD' : illegal use of this type as an expression
+cbatch.c(3731) : error C2146: syntax error : missing ';' before identifier 'InitialCursorPosition'
+cbatch.c(3731) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3731) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3731) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3731) : error C2065: 'InitialCursorPosition' : undeclared identifier
+cbatch.c(3732) : error C2275: 'HANDLE' : illegal use of this type as an expression
+cbatch.c(3732) : error C2146: syntax error : missing ';' before identifier 'hOut'
+cbatch.c(3732) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3732) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3732) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3732) : error C2065: 'hOut' : undeclared identifier
+cbatch.c(3733) : error C2275: 'DWORD' : illegal use of this type as an expression
+cbatch.c(3733) : error C2146: syntax error : missing ';' before identifier 'cb'
+cbatch.c(3733) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3733) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3733) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3733) : error C2065: 'cb' : undeclared identifier
+cbatch.c(3734) : error C2275: 'ULONG' : illegal use of this type as an expression
+cbatch.c(3734) : error C2146: syntax error : missing ';' before identifier 'i'
+cbatch.c(3734) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3734) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+cbatch.c(3734) : error C2143: syntax error : missing ';' before 'identifier'
+cbatch.c(3734) : error C2065: 'i' : undeclared identifier
+cbatch.c(3734) : error C2065: 'iCompletionCh' : undeclared identifier
+cbatch.c(3734) : error C2065: 'iCR' : undeclared identifier
+cbatch.c(3749) : error C4047: '=' : 'int' differs in levels of indirection from 'HANDLE'
+cbatch.c(3750) : error C4047: '==' : 'int' differs in levels of indirection from 'HANDLE'
+cbatch.c(3751) : error C4047: '=' : 'int' differs in levels of indirection from 'HANDLE'
+cbatch.c(3754) : error C4022: 'GetConsoleScreenBufferInfo' : pointer mismatch for actual parameter 1
+cbatch.c(3754) : error C4133: 'function' : incompatible types - from 'int *' to 'PCONSOLE_SCREEN_BUFFER_INFO'
+cbatch.c(3758) : error C2224: left of '.dwCursorPosition' must have struct/union type
+cbatch.c(3766) : error C2224: left of '.nLength' must have struct/union type
+cbatch.c(3767) : error C2224: left of '.nInitialChars' must have struct/union type
+cbatch.c(3768) : error C2224: left of '.dwCtrlWakeupMask' must have struct/union type
+cbatch.c(3769) : error C2224: left of '.dwControlKeyState' must have struct/union type
+cbatch.c(3775) : error C4047: '=' : 'int' differs in levels of indirection from 'void *'
+cbatch.c(3794) : error C4018: '<' : signed/unsigned mismatch
+cbatch.c(3823) : error C4047: '==' : 'int' differs in levels of indirection from 'void *'
+cbatch.c(3823) : error C4047: 'function' : 'const char *' differs in levels of indirection from 'int'
+cbatch.c(3838) : error C2224: left of '.dwControlKeyState' must have struct/union type
+cbatch.c(3838) : error C2198: 'DoComplete' : too few arguments for call through pointer-to-function
+cbatch.c(3846) : error C2224: left of '.nInitialChars' must have struct/union type
+cbatch.c(3847) : error C4022: 'SetConsoleCursorPosition' : pointer mismatch for actual parameter 1
+cbatch.c(3847) : error C2440: 'function' : cannot convert from 'int' to 'COORD'
+cbatch.c(3847) : error C4024: 'SetConsoleCursorPosition' : different types for formal and actual parameter 2
+cbatch.c(3848) : error C4022: 'WriteConsoleA' : pointer mismatch for actual parameter 1
+cbatch.c(3848) : error C2224: left of '.nInitialChars' must have struct/union type
+cbatch.c(3848) : error C4047: 'function' : 'DWORD' differs in levels of indirection from 'int *'
+cbatch.c(3848) : error C2198: 'WriteConsoleA' : too few arguments for call through pointer-to-function
+cbatch.c(3850) : error C2224: left of '.dwCursorPosition' must have struct/union type
+cbatch.c(3851) : error C2224: left of '.dwCursorPosition' must have struct/union type
+cbatch.c(3852) : error C4022: 'FillConsoleOutputCharacterA' : pointer mismatch for actual parameter 1
+cbatch.c(3854) : error C2224: left of '.dwCursorPosition' must have struct/union type
+cbatch.c(3855) : error C2440: 'function' : cannot convert from 'int *' to 'COORD'
+cbatch.c(3855) : error C4024: 'FillConsoleOutputCharacterA' : different types for formal and actual parameter 4
+cbatch.c(3855) : error C2198: 'FillConsoleOutputCharacterA' : too few arguments for call through pointer-to-function
+cbatch.c(3863) : error C2224: left of '.nInitialChars' must have struct/union type
+cbatch.c(3871) : error C4022: 'HeapFree' : pointer mismatch for actual parameter 3
+cbatch.c(3872) : error C2224: left of '.nInitialChars' must have struct/union type
+cbatch.c(3872) : error C2198: 'HeapAlloc' : too few arguments for call through pointer-to-function
+cbatch.c(3872) : error C4047: '=' : 'int' differs in levels of indirection from 'LPVOID'
+cbatch.c(3873) : error C4047: 'function' : 'char *' differs in levels of indirection from 'int'
+cbatch.c(3881) : error C4022: 'HeapFree' : pointer mismatch for actual parameter 3
+Compiling - win95cmd\cparse.c for X86
+Compiling - win95cmd\dir.c for X86
+dir.c(1322) : error C2220: warning treated as error - no object file generated
+dir.c(1322) : error C4552: '|' : operator has no effect; expected operator with side-effect
+Compiling - win95cmd\readcon.c for X86
+readcon.c(568) : error C2065: 'PCONSOLE_READCONSOLE_CONTROL' : undeclared identifier
+readcon.c(568) : error C2146: syntax error : missing ';' before identifier 'pInputControl'
+readcon.c(568) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(568) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(568) : error C2143: syntax error : missing ';' before 'identifier'
+readcon.c(568) : error C2065: 'pInputControl' : undeclared identifier
+readcon.c(569) : error C2275: 'CONSOLE_SCREEN_BUFFER_INFO' : illegal use of this type as an expression
+readcon.c(569) : error C2146: syntax error : missing ';' before identifier 'csbi'
+readcon.c(569) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(569) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(569) : error C2143: syntax error : missing ';' before 'identifier'
+readcon.c(569) : error C2065: 'csbi' : undeclared identifier
+readcon.c(570) : error C2143: syntax error : missing ';' before 'const'
+readcon.c(571) : error C2275: 'BOOL' : illegal use of this type as an expression
+readcon.c(571) : error C2146: syntax error : missing ';' before identifier 'bOk'
+readcon.c(571) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(571) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(571) : error C2143: syntax error : missing ';' before 'identifier'
+readcon.c(571) : error C2065: 'bOk' : undeclared identifier
+readcon.c(572) : error C2275: 'DWORD' : illegal use of this type as an expression
+readcon.c(572) : error C2146: syntax error : missing ';' before identifier 'dwc'
+readcon.c(572) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(572) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(572) : error C2143: syntax error : missing ';' before 'identifier'
+readcon.c(572) : error C2065: 'dwc' : undeclared identifier
+readcon.c(572) : error C2065: 'dwOldMode' : undeclared identifier
+readcon.c(573) : error C2275: 'DWORD' : illegal use of this type as an expression
+readcon.c(573) : error C2146: syntax error : missing ';' before identifier 'dwCtrlWakeupMask'
+readcon.c(573) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(573) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(573) : error C2143: syntax error : missing ';' before 'identifier'
+readcon.c(573) : error C2065: 'dwCtrlWakeupMask' : undeclared identifier
+readcon.c(574) : error C2275: 'BOOL' : illegal use of this type as an expression
+readcon.c(574) : error C2146: syntax error : missing ';' before identifier 'bWakeupKeyHit'
+readcon.c(574) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(574) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(574) : error C2143: syntax error : missing ';' before 'identifier'
+readcon.c(574) : error C2065: 'bWakeupKeyHit' : undeclared identifier
+readcon.c(596) : error C4133: 'function' : incompatible types - from 'int *' to 'PCONSOLE_SCREEN_BUFFER_INFO'
+readcon.c(600) : error C2224: left of '.dwCursorPosition' must have struct/union type
+readcon.c(601) : error C2224: left of '.dwSize' must have struct/union type
+readcon.c(602) : error C2224: left of '.dwSize' must have struct/union type
+readcon.c(603) : error C2224: left of '.wAttributes' must have struct/union type
+readcon.c(623) : error C2146: syntax error : missing ';' before identifier 'lpReserved'
+readcon.c(623) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(623) : error C2144: syntax error : '<Unknown>' should be preceded by '<Unknown>'
+readcon.c(623) : error C2143: syntax error : missing ';' before 'identifier'
+readcon.c(624) : error C4047: '!=' : 'int' differs in levels of indirection from 'void *'
+readcon.c(624) : error C2223: left of '->nLength' must point to struct/union
+readcon.c(624) : error C2100: illegal indirection
+readcon.c(625) : error C2223: left of '->dwCtrlWakeupMask' must point to struct/union
+readcon.c(626) : error C2223: left of '->nInitialChars' must point to struct/union
+readcon.c(627) : error C2223: left of '->nInitialChars' must point to struct/union
+readcon.c(629) : error C4047: '=' : 'int' differs in levels of indirection from 'void *'
+readcon.c(643) : error C2065: 'keyEvent' : undeclared identifier
+readcon.c(643) : error C4047: '=' : 'int' differs in levels of indirection from 'KEY_EVENT_RECORD *'
+readcon.c(645) : error C2223: left of '->bKeyDown' must point to struct/union
+readcon.c(646) : error C4047: 'function' : 'const KEY_EVENT_RECORD *' differs in levels of indirection from 'int'
+readcon.c(649) : error C4047: '!=' : 'int' differs in levels of indirection from 'void *'
+readcon.c(650) : error C2223: left of '->dwControlKeyState' must point to struct/union
+readcon.c(650) : error C2223: left of '->dwControlKeyState' must point to struct/union
+Compiling - win95cmd\generating code... for X86
+cparse.c(1071) : error C2220: warning treated as error - no 'object' file generated
+cparse.c(1071) : error C4715: 'ParseS5' : not all control paths return a value
+cparse.c(1639) : error C4715: 'BuildArgList' : not all control paths return a value
+NMAKE :  U1077: 'cl' : return code '0x2'
+BUILD: NMAKE.EXE failed - rc = 2
+BUILD: Compile errors: not linking f:\nt4\private\windows\cmd\cmd directory
+BUILD: Compile errors: not linking f:\nt4\private\windows\cmd\win95cmd directory
+BUILD: Done
+
+    9 files compiled - 2 Warnings - 251 Errors

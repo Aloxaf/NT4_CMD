@@ -1,0 +1,503 @@
+!IF 0
+
+Copyright (c) 1994-1996  Microsoft Corporation
+
+Module Name:
+
+    mipsmk.inc
+
+Abstract:
+
+        This module contains the MIPS specific build controls.  It is included
+        by makefile.def.
+
+Revision History:
+
+!ENDIF
+
+DELAYLOAD_SUPPORTED=1
+!ifndef DELAYLOAD_VERSION
+!	if $(_NT_TOOLS_VERSION) >= 0x700
+DELAYLOAD_VERSION=0x0200
+!	elseif $(_NT_TOOLS_VERSION) == 0x600
+DELAYLOAD_VERSION=0x0100
+!	else
+DELAYLOAD_SUPPORTED=0
+!	endif
+!endif
+
+#
+# Mips option control
+#
+
+UMBASE=$(UMBASE:*=mips)
+UMLIBS=$(UMLIBS:*=mips)
+NTRES=$(NTRES:*=mips)
+UMRES=$(UMRES:*=mips)
+UMOBJS=$(UMOBJS:*=mips)
+LINKLIBS=$(LINKLIBS:*=mips)
+GDI_DRIVER_LIBS=$(GDI_DRIVER_LIBS:*=mips)
+DLLBASE=$(DLLBASE:*=mips)
+DLLDEF=$(DLLDEF:*=mips)
+MACHINE_TARGETLIBS=$(MACHINE_TARGETLIBS:*=mips)
+!ifdef USE_MSHTML_PDB_RULES
+MACHINE_TARGETLIBS=$(MACHINE_TARGETLIBS:????????=*)
+!endif
+TARGET=$(TARGET:*=mips)
+DYNLINK_LIB=$(DYNLINK_LIB:*=mips)
+TARGETEXEFILES=$(TARGETEXEFILES:*=mips)
+TARGETLIBFILES=$(TARGETLIBFILES:*=mips)
+TARGETOBJFILES=$(TARGETOBJFILES:*=mips)
+UMOBJFILES=$(UMOBJFILES:*=mips)
+UMEXEFILES=$(UMEXEFILES:*=mips)
+HEADERFILE=$(HEADERFILE:*=mips)
+HEADEROBJNAME=$(HEADEROBJNAME:*=mips)
+HEADEROBJ=$(HEADEROBJ:*=mips)
+PRECOMPILED=$(PRECOMPILED:*=mips)
+PRECOMPILED_CXX=$(PRECOMPILED_CXX:*=mips)
+PRECOMPILED_TARGET=$(PRECOMPILED_TARGET:*=mips)
+MFC_STATIC_LIB=$(MFC_STATIC_LIB:*=mips)
+CRT_LIB_PATH=$(CRT_LIB_PATH:*=mips)
+SDK_LIB_PATH=$(SDK_LIB_PATH:*=mips)
+DDK_LIB_PATH=$(DDK_LIB_PATH:*=mips)
+IFSKIT_LIB_PATH=$(IFSKIT_LIB_PATH:*=mips)
+HALKIT_LIB_PATH=$(HALKIT_LIB_PATH:*=mips)
+PROCESSOR_LIB_PATH=$(PROCESSOR_LIB_PATH:*=mips)
+ORDER=$(ORDER:*=mips)
+OBJLIBFILES=$(OBJLIBFILES:*=mips)
+MISCFILES=$(MISCFILES) $(MIPS_MISCFILES)
+SOURCES=$(SOURCES) $(MIPS_SOURCES)
+
+ADDITIONAL_ATL_LIBS = $(ADDITIONAL_ATL_LIBS) $(ATL_LIB_PATH)\atlthunk.lib
+
+!ifdef CHICAGO_PRODUCT
+USE_MAPSYM=1
+!endif
+
+# "$(TARGETTYPE)"=="DRIVER"     ||
+# "$(TARGETTYPE)" == "HAL" ||
+# "$(TARGETTYPE)" == "EXPORT_DRIVER" ||
+
+!IF "$(TARGETTYPE)"=="GDI_DRIVER" || \
+    "$(TARGETTYPE)"=="MINIPORT"
+#
+#Drivers don't link with link libs.
+#
+MACHINE_TARGETLIBS=$(SDK_LIB_PATH)\int64.lib $(MACHINE_TARGETLIBS)
+!ELSE
+!IF defined(USE_NTDLL) || defined (USE_NOLIBS)
+MACHINE_TARGETLIBS=$(SDK_LIB_PATH)\int64.lib $(MACHINE_TARGETLIBS)
+!ENDIF
+!ENDIF
+
+!ifdef NTTARGETFILES
+NTTARGETFILES=$(NTTARGETFILES:*=mips)
+!endif
+!ifdef NTTARGETFILE0
+NTTARGETFILE0=$(NTTARGETFILE0:*=mips)
+!endif
+!ifdef NTTARGETFILE1
+NTTARGETFILE1=$(NTTARGETFILE1:*=mips)
+!endif
+
+!ifdef PROJECT_LIB_PATH
+PROJECT_LIB_PATH=$(PROJECT_LIB_PATH:*=mips)
+!endif
+
+!IF "$(DLLENTRY)" != "-noentry"
+!   IF "$(DLLENTRY:@12=)" == "$(DLLENTRY)"
+DLLENTRY=$(DLLENTRY)
+!   ENDIF
+!ENDIF
+
+!IFDEF STD_CALL_ENTRY
+UMENTRY=$(UMENTRY)
+!ENDIF
+
+LINKER_FLAGS = $(LINKER_FLAGS) -merge:.xdata=.rdata
+
+MIPS_ENDIAN=MIPSEL
+
+ENTRY_SUFFIX=
+GDI_ENTRY_SUFFIX=
+
+DEFAULT_STACKRESERVE=0x40000
+DEFAULT_STACKCOMMIT=0x2000
+
+!IFDEF MIPS_WARNING_LEVEL
+MSC_WARNING_LEVEL=$(MIPS_WARNING_LEVEL)
+!ENDIF
+
+MSC_WARNING_LEVEL=$(MSC_WARNING_LEVEL) $(COMPILER_WX_SWITCH)
+
+!ifdef MIPS_PERFFLAGS
+PERFFLAGS = $(MIPS_PERFFLAGS)
+!endif
+
+DEFAULT_MSC_OPT = $(DEFAULT_MSC_OPT:/Oxs=/Ox)
+
+# Set MSC_OPTIMIZATION.
+# Order of precedence:
+#   Platform specific override
+#   Environment variable
+#   System Default
+
+!if defined(MIPS_OPTIMIZATION)
+MSC_OPTIMIZATION=$(MIPS_OPTIMIZATION)
+!elseif !defined(MSC_OPTIMIZATION)
+MSC_OPTIMIZATION=$(DEFAULT_MSC_OPT)
+!endif
+
+LINK_TIME_CODE_GENERATION_MSC_FLAG=
+!if defined(LINK_TIME_CODE_GENERATION) && !defined(FORCENATIVEOBJECT)
+# Some objects must be built native, so turn off GL for those
+LINK_TIME_CODE_GENERATION_MSC_FLAG=/GL
+!endif
+
+DBGFLAGS=$(DBGFLAGS) $(MSC_OPTIMIZATION) $(LINK_TIME_CODE_GENERATION_MSC_FLAG)
+
+!IFDEF MIPS_CPPFLAGS
+MSC_CPPFLAGS=$(MIPS_CPPFLAGS)
+!ENDIF
+
+!ifdef NO_STRING_POOLING
+STRING_POOLING =
+!else
+!ifdef NO_READONLY_STRINGS
+STRING_POOLING = /Gf
+!else
+STRING_POOLING = /GF
+!endif
+!endif
+
+!ifdef USE_NATIVE_EH
+! if "$(USE_NATIVE_EH)" == "ASYNC"
+EH_FLAGS=/EHa
+! else
+!  if "$(USE_NATIVE_EH)" == "CTHROW"
+EH_FLAGS=/EHsc-
+!  else
+EH_FLAGS=/EHsc
+!  endif
+! endif
+!else
+EH_FLAGS=/EHs-c-
+!endif
+
+!ifdef USE_RTTI
+RTTI_FLAGS=/GR
+!else
+RTTI_FLAGS=/GR-
+!endif
+
+!if "$(BUFFER_OVERFLOW_CHECKS)" == "" || \
+    "$(BUFFER_OVERFLOW_CHECKS)" == "NO_NTDLL"
+BUFFER_OVERFLOW_CHECKS=1
+!endif
+
+# HACKHACK: No buffer overflow checks for MIPS!
+BUFFER_OVERFLOW_CHECKS=0
+
+!if "$(BUFFER_OVERFLOW_CHECKS)" == "1" || \
+    ("$(BUFFER_OVERFLOW_CHECKS)" == "CHK" && !$(FREEBUILD))
+! if "$(TARGETTYPE)" == "DRIVER" || \
+    "$(TARGETTYPE)" == "EXPORT_DRIVER" || \
+    "$(TARGETTYPE)" == "DRIVER_LIBRARY"
+!  if "$(DRIVERTYPE)" != "VXD"
+BO_FLAGS=/GS
+BO_LIB=$(SDK_LIB_PATH)\BufferOverflowK.lib
+DRIVER_ENTRY=GsDriverEntry
+!  endif
+! else
+!  if "$(TARGETTYPE)" == "GDI_DRIVER"
+BO_FLAGS=/GS
+BO_LIB=$(SDK_LIB_PATH)\BufferOverflowGDI.lib
+GDI_DRIVER_ENTRY=GsDrvEnableDriver
+!  else
+!   if  "$(TARGETTYPE)" == "MINIPORT"
+!    if defined(_NT_TARGET_VERSION)
+!     if $(_NT_TARGET_VERSION) >= 0x502
+BO_FLAGS=/GS
+BO_LIB=$(SDK_LIB_PATH)\BufferOverflowK.lib
+DRIVER_ENTRY=GsDriverEntry
+!     endif
+!    endif
+!   else
+!    if "$(TARGETTYPE)" == "DYNLINK"
+!     if !defined(RESOURCE_ONLY_DLL) 
+!      if !(("$(UMTYPE)"== "nt") || ("$(UMTYPE)"=="ntss"))
+BO_FLAGS=/GS
+BO_LIB=$(SDK_LIB_PATH)\BufferOverflowU.lib
+!       if "$(DLLENTRY)" == "-noentry"
+!        if defined(USE_MSVCRT) || defined(USE_LIBCMT)
+DLLENTRY=-entry:_DllMainCRTStartup
+!        else
+DLLENTRY=-entry:_DllMainCRTStartupForGS
+!        endif
+!       endif
+!      endif
+!     endif
+!    else
+!     if ("$(UMTYPE)"== "nt") || ("$(UMTYPE)"=="ntss")
+BO_FLAGS=/GS
+!      IF "$(NTTEST)" != ""
+BO_LIB=$(SDK_LIB_PATH)\BufferOverflowK.lib
+!      else
+UMENTRY=-entry:NtProcessStartupForGS
+BO_LIB=$(SDK_LIB_PATH)\BufferOverflow.lib
+!      endif
+!     else
+BO_FLAGS=/GS
+BO_LIB=$(SDK_LIB_PATH)\BufferOverflowU.lib
+!     endif
+!    endif
+!   endif
+!  endif
+! endif
+!else
+! if "$(BUFFER_OVERFLOW_CHECKS)" == "NTDLL"
+# Needed for EXEs that can't link to kernel32.dll (smss.exe, sprestrt.exe, etc)
+BO_FLAGS=/GS
+!  if ("$(UMTYPE)"== "nt") || ("$(UMTYPE)"=="ntss")
+UMENTRY=-entry:NtProcessStartupForGS
+!  endif
+!  if "$(TARGETTYPE)" == "DYNLINK" && !defined(RESOURCE_ONLY_DLL) && "$(DLLENTRY)" == "-noentry"
+!   if "$(TARGETNAME)" != "ntdll"
+DLLENTRY=-entry:_DllMainCRTStartupForGS
+!   endif
+!  endif
+BO_LIB=$(SDK_LIB_PATH)\BufferOverflow.lib
+! else
+!  if "$(BUFFER_OVERFLOW_CHECKS)" == "GDI"
+# Needed for LIBs linked into drivers of type GDI_DRIVER
+BO_FLAGS=/GS
+BO_LIB=$(SDK_LIB_PATH)\BufferOverflowGDI.lib
+!  else
+!   if "$(BUFFER_OVERFLOW_CHECKS)" == "COMPILE_ONLY"
+BO_FLAGS=/GS
+!   endif
+!  endif
+! endif
+!endif  # Overflow checks
+
+# HACKHACK: No GS support for MIPS.
+BO_FLAGS=/GS-
+
+NO_SAFESEH=1
+!ifndef NO_SAFESEH
+LINKER_FLAGS=$(LINKER_FLAGS) /safeseh
+!endif
+
+!if defined(MIPS_STRUCT_PACKING)
+MSC_STRUCT_PACKING=$(MIPS_STRUCT_PACKING)
+!elseif !defined(MSC_STRUCT_PACKING)
+MSC_STRUCT_PACKING=/Zp8
+!endif
+
+STDFLAGS= /c /Zl $(MSC_STRUCT_PACKING) /Gy /Gm- $(CBSTRING) $(MSC_WARNING_LEVEL) $(MSC_CALL_TYPE) \
+          $(EH_FLAGS) \
+          $(RTTI_FLAGS) $(STRING_POOLING) $(BO_FLAGS)
+
+!ifndef LKG6COMPILER	  
+STDFLAGS= $(STDFLAGS) $(MIPS_CPU_OPTIMIZATION) /Gi- $(ERATTA_FLAGS) 
+!endif
+
+!IF $(FREEBUILD)
+ASM_DBG_DEFINES=-DDBG=0
+!ENDIF
+
+DBGFLAGS=$(DBGFLAGS) /Oy-
+
+!ifndef USE_PDB_TO_COMPILE
+DBGFLAGS=$(DBGFLAGS:/Zi=-Z7)
+DBGFLAGS=$(DBGFLAGS:-Zi=-Z7)
+!else
+! ifndef USE_MSHTML_PDB_RULES
+!  if "$(TARGETTYPE)" == "LIBRARY"
+DBGFLAGS=$(DBGFLAGS) /Fd$(TARGETPATH)\$(TARGET_DIRECTORY)\$(TARGETNAME).pdb
+!  else
+DBGFLAGS=$(DBGFLAGS) /Fd$(MAKEDIR)\$(_OBJ_DIR)\mips^\
+!  endif
+! else
+!  ifndef TARGETPDB
+TARGETPDB=$(TARGETNAME)
+!  endif
+!  ifndef ROOT
+ROOT=$(MAKEDIR)
+!  endif
+DBGFLAGS=$(DBGFLAGS) /Fd$(ROOT)\$(_OBJ_DIR)\mips\$(TARGETPDB).pdb
+! endif
+!endif
+
+!ifndef NO_BROWSER_INFO
+! ifdef BROWSER_INFO
+DBGFLAGS=$(DBGFLAGS) /FR$(MAKEDIR)\$(_OBJ_DIR)\mips^\
+! endif
+!endif
+
+#
+# MIPS option control
+#
+
+!IF "$(HALTYPE)" == ""
+HALDEF=
+!ELSE
+HALDEF=-D$(HALTYPE)=1
+!ENDIF
+
+MIPS_CPU=-DR4000
+MIPS_TRAP_FILE=x4trap.obj
+
+MIPS_ASM_DEFINES=$(MIPS_ASMCPP)
+ENV_DEFINES=$(LIBC_DEFINES) $(NET_C_DEFINES) $(MSC_CPPFLAGS) $(NTCPPFLAGS)
+
+STD_DEFINES=-DENABLE_RESTRICTED -DMIPS=1 -D_MIPS_=1 -D$(MIPS_ENDIAN) -DNO_EXT_KEYS -DCONDITION_HANDLING=1 $(HALDEF) $(MSC_CALL_DEFINE) $(STD_DEFINES)
+
+STDFLAGS=-c
+MS_MIPS=1
+
+MIPS3_INSTR = -QMR4300
+
+MSC_C_COMPILER_NAME=cl -nologo
+
+CDEFINES=$(STD_DEFINES) $(MIPS_CPU) $(TARGET_DBG_DEFINES) $(ENV_DEFINES) \
+              $(LIBC_DEFINES) $(C_DEFINES) $(NET_C_DEFINES) $(MFC_DEFINES)
+CFLAGS=$(MIPS_FLAGS) $(NTMIPSFLAGS) $(STDFLAGS) $(DBGFLAGS) $(PERFFLAGS) $(USER_C_FLAGS)
+AFLAGS=-Gy $(MIPS_FLAGS) $(NTMIPSFLAGS) $(STDFLAGS) $(DBGFLAGS) $(PERFFLAGS) $(MIPS3_INSTR) -w
+
+MIPS_CDEFINES=$(CDEFINES)
+MIPS_CFLAGS=$(CFLAGS) -Zl -Zp8 -Gy $(MSC_WARNING_LEVEL) $(CBSTRING) $(EH_FLAGS) $(STRING_POOLING) $(MIPS3_INSTR)
+MIPS_CFLAGS=$(MIPS_CFLAGS:-Qmips=-QM)
+
+!ifdef MANAGED_CXX
+CFLAGS=/clr $(CFLAGS)
+!endif
+
+MIPS_ASSEMBLER_NAME = mipsasm
+C_COMPILER_NAME     = $(MSC_C_COMPILER_NAME)
+CXX_COMPILER_NAME   = $(MSC_C_COMPILER_NAME)
+C_PREPROCESSOR_NAME = $(MSC_C_COMPILER_NAME)
+CS_COMPILER_NAME    = csc.exe -nologo
+VB_NET_COMPILER_NAME = vbc.exe -nologo
+
+!if "$(UNSAFE_CODE_SWITCH)" == ""
+! if defined(MANAGED_VB)
+UNSAFE_CODE_SWITCH=
+! else
+!  if "$(UNSAFE_CODE)" == "1" 
+UNSAFE_CODE_SWITCH=/unsafe+
+!  else
+UNSAFE_CODE_SWITCH=/unsafe-
+!  endif
+! endif
+!endif
+
+MANAGED_STD_FLAGS        = $(MANAGED_DBG_FLAGS) /warnaserror+ $(UNSAFE_CODE_SWITCH)
+
+!if defined(MANAGED_VB)
+MANAGED_STD_FLAGS        = $(MANAGED_STD_FLAGS) $(USER_VB_NET_FLAGS)
+!else
+MANAGED_STD_FLAGS        = $(MANAGED_STD_FLAGS) $(USER_CS_FLAGS)
+!endif
+
+!if defined(PERF_INSTRUMENTATION)
+MANAGED_STD_FLAGS=$(MANAGED_STD_FLAGS) /define:PROFILE
+!endif
+
+GLOBAL_C_FLAGS = -Imips\ -I. $(INCPATH0) $(CDEFINES) $(MIPS_CFLAGS) \
+                 -DFPO=1 -D__stdcall= -D__cdecl= -D_LANGUAGE_C -DLANGUAGE_C $(MFC_FLAGS)
+
+!ifdef LKG6COMPILER
+GLOBAL_C_FLAGS=$(CRT_BUILD_FLAGS) $(GLOBAL_C_FLAGS) 
+!endif
+
+NP_COMPILER_FLAGS = $(GLOBAL_C_FLAGS) $(COMPILER_WARNINGS)
+
+C_COMPILER_FLAGS = $(NP_COMPILER_FLAGS) $(PRECOMPILED)
+CXX_COMPILER_FLAGS = $(NP_COMPILER_FLAGS) $(PRECOMPILED_CXX) $(MSC_CPPFLAGS) $(NTCPPFLAGS)
+C_PREPROCESSOR_FLAGS = $(GLOBAL_C_FLAGS) -EP -Tc
+
+C_PREPROCESSOR = $(C_PREPROCESSOR_NAME) $(C_PREPROCESSOR_FLAGS)
+C_COMPILER     = $(C_COMPILER_NAME) $(C_COMPILER_FLAGS)
+NP_C_COMPILER  = $(C_COMPILER_NAME) $(NP_COMPILER_FLAGS)
+CXX_COMPILER   = $(CXX_COMPILER_NAME) $(CXX_COMPILER_FLAGS) 
+
+ECHO_MSG=ClMips $< " $(C_COMPILER) "
+ECHO_MSG_P=ClMips $** " $(NP_C_COMPILER) "
+ECHO_CXX_MSG=ClMips $< " $(CXX_COMPILER) "
+
+ECHO_PRECOMPILED_MSG1=CpMips $(C_COMPILER_FLAGS) /Yl$(TARGETNAME) /Yc$(?F) $(HEADERFILE) \
+               $(HEADEROBJ) $(PRECOMPILED_FLAG) $(PRECOMPILED_SOURCEFILE)
+
+ECHO_PRECOMPILED_MSG2=CpMips $(C_COMPILER_FLAGS) /Yl$(TARGETNAME) /Yc$(?F) $(HEADERFILE) \
+               $(HEADEROBJ) $(PRECOMPILED_FLAG)
+
+#
+# Use Mips MCL for assembler files.
+#
+
+MIPS_ASSEMBLER_FLAGS = -nologo -c $(MIPS_CPU_SWITCHES) \
+                        -Imips\ -I. $(INCPATH0) $(CDEFINES) \
+                        $(AFLAGS) -D_LANGUAGE_ASSEMBLY
+
+MIPS_ASSEMBLER = $(MIPS_ASSEMBLER_NAME) $(MIPS_ASSEMBLER_FLAGS)
+
+{..\mips\}.s{$(_OBJ_DIR)\mips\}.obj:
+    @-erase $@ >nul 2>&1
+    @echo AsMips $<     " $(MIPS_ASSEMBLER) "
+    @$(MIPS_ASSEMBLER_NAME) @<< -Fo$(MAKEDIR)\$@ $<
+$(MIPS_ASSEMBLER_FLAGS: =
+)
+<<NOKEEP
+
+{$(_OBJ_DIR)\mips\}.s{$(_OBJ_DIR)\mips\}.obj:
+    @-erase $@ >nul 2>&1
+    @echo AsMips $<     " $(MIPS_ASSEMBLER) "
+    @$(MIPS_ASSEMBLER_NAME) @<< -Fo$(MAKEDIR)\$@ $<
+$(MIPS_ASSEMBLER_FLAGS: =
+)
+<<NOKEEP
+
+{mips\}.s{$(_OBJ_DIR)\mips\}.obj:
+    @-erase $@ >nul 2>&1
+    @echo AsMips $<     " $(MIPS_ASSEMBLER) "
+    @$(MIPS_ASSEMBLER_NAME) @<< -Fo$(MAKEDIR)\$@ $<
+$(MIPS_ASSEMBLER_FLAGS: =
+)
+<<NOKEEP
+
+!IFDEF _NTMIPSLIBS
+_NTLIBS=$(_NTMIPSLIBS)
+!ENDIF
+
+COPYDST=$(MIPSCOPYDST)
+LIB_COPY=ntmipscp.cmd
+
+!IF "$(NTDEBUGTYPE)" == "windbg" || "$(NTDEBUGTYPE)" == "both"
+NTTEST_LINK_OPTIONS=-entry:KiSystemStartup
+!ELSE
+NTTEST_LINK_OPTIONS=-base:0x10000 -entry:KiSystemStartup
+!ENDIF
+
+!if "$(TARGETTYPE)" != "DRIVER"         && \
+    "$(TARGETTYPE)" != "DRIVER_LIBRARY" && \
+    "$(TARGETTYPE)" != "EXPORT_DRIVER"  && \
+    "$(TARGETTYPE)" != "HAL"            && \
+    "$(TARGETTYPE)" != "GDI_DRIVER"     && \
+    "$(TARGETTYPE)" != "MINIPORT"
+!	if defined(LINKER_WIN98OPT) || defined (CHICAGO_PRODUCT)
+LINKER_FLAGS=$(LINKER_FLAGS) /opt:win98
+!	else
+LINKER_FLAGS=$(LINKER_FLAGS) /opt:nowin98
+!	endif
+!endif
+
+# HACKHACK: No SAFESEH for MIPS.
+!if 0
+# SEH support for libs built with an older compiler
+!if defined(_NT_TARGET_VERSION)
+!    if $(_NT_TARGET_VERSION) < 0x502 && $(_NT_TOOLS_VERSION) >= 0x700
+TARGETLIBS=$(TARGETLIBS) $(DDK_LIB_PATH)\sehupd.lib
+!    endif
+!endif
+!endif
