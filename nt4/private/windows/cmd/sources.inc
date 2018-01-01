@@ -5,7 +5,7 @@ TARGETNAME=cmd
 TARGETPATH=obj
 TARGETTYPE=PROGRAM
 
-INCLUDES=..;..\..\inc;$(SIZ_NTROOT)\private\windows\media\inc
+INCLUDES=..;..\..\inc
 
 MSC_WARNING_LEVEL=/W3 /WX-
 

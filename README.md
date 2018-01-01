@@ -5,7 +5,7 @@
 
 编译方法: 执行 ./start_build.bat 
 
-生成二进制文件路径: ./nt4/private/windows/cmd/cmd/objxxx/
+生成二进制文件路径: ./nt4/private/windows/cmd/cmd/objxxx/x86/, ./binn/x86xxx/
 
 已在 WindowsXP(x86) 及 Windows7(x64) 下测试通过
 
