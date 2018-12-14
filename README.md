@@ -9,7 +9,11 @@
 
 已在 WindowsXP(x86) 及 Windows7(x64) 下测试通过
 
-BUG: 在Win7上进行build时会弹出大量iexplore窗口, 目前解决方案是在build完后全部taskkill掉 
+BUG: 
+
+- 在Win7上进行build时会弹出大量iexplore窗口, 目前解决方案是在build完后全部taskkill掉 
+- 路径中含有空格时会无法构建
+- XP 上`./binn/x86xxx/`处的二进制文件无法放置
 
 ## 相关项目
 OpenNT: https://github.com/Paolo-Maffei/OpenNT
